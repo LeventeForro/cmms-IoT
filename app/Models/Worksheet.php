@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Worksheet extends Model
 {
     protected $fillable = [
+        'device_id',
         'priority',
         'description',
         'due_date',
@@ -31,10 +32,17 @@ class Worksheet extends Model
     }
     public function creator(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'creator_id'); // aki létrehozta a munkalapot
+        return $this->belongsTo(User::class, 'creator_id');
     }
+
     public function repairer(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'repairer_id'); // akikarbantartó!
+        return $this->belongsTo(User::class, 'repairer_id');
     }
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class);
+    }
+
+
 }
