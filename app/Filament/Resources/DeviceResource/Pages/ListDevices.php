@@ -8,9 +8,11 @@ use Filament\Resources\Pages\ListRecords;
 use App\Models\Device;
 use Filament\Resources\Components\Tab;
 use Illuminate\Database\Eloquent\Builder;
+use Asmit\ResizedColumn\HasResizableColumn;
 
 class ListDevices extends ListRecords
 {
+    use HasResizableColumn;
     protected static string $resource = DeviceResource::class;
 
     protected function getHeaderActions(): array

@@ -9,9 +9,11 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Components\Tab;
 use App\Models\User;
+use Asmit\ResizedColumn\HasResizableColumn;
 
 class ListUsers extends ListRecords
 {
+    use HasResizableColumn;
     protected static string $resource = UserResource::class;
 
     protected function getHeaderActions(): array
