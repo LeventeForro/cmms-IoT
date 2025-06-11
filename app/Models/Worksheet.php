@@ -9,16 +9,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Worksheet extends Model
 {
     protected $fillable = [
-        'device_id',
-        'priority',
-        'description',
-        'due_date',
-        'finish_date',
+        'title',
         'device_id',
         'creator_id',
         'repairer_id',
+        'status',
+        'priority',
+        'due_date',
+        'finish_date',
         'attachments',
-        'comment',
+        'description',
     ];
 
     protected $casts = [

@@ -27,7 +27,11 @@ class FeedbackResource extends Resource
 {
     return $form->schema([
         Select::make('worksheet_id')
-            ->relationship('worksheet', 'id')
+            ->relationship(
+                name: 'worksheet',
+                titleAttribute: 'title', // <-- EZT ÁLLÍTSD 'title'-ra!
+                modifyQueryUsing: fn ($query) => $query->where('status', 'closed')
+            )
             ->label('Munkalap')
             ->required(),
 

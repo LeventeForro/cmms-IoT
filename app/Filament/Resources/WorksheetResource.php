@@ -88,7 +88,8 @@ class WorksheetResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('device.name')->label('Berendezés'),
-                TextColumn::make('user.name')->label('Felelős'),
+                TextColumn::make('creator.name')->label('Felelős'),
+                TextColumn::make('repairer.name')->label('Karbantartó'),
                 BadgeColumn::make('status')->label('Státusz')->colors([
                     'primary' => 'open',
                     'warning' => 'in_progress',

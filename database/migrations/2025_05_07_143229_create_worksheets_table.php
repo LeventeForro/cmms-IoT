@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('worksheets', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 100);
             $table->enum('priority', ['Normál', 'Sürgős', 'Leálláskor'])->default('Normál');
             $table->text('description');
             $table->date('due_date')->nullable();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->text('attachments');
             $table->text('comment')->nullable();
             $table->timestamps();
+            $table->string('status')->default('open');
         });
     }
 
