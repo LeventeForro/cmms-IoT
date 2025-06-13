@@ -16,6 +16,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Yepsua\Filament\Forms\Components\Rating;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class FeedbackResource extends Resource
 {
@@ -33,7 +35,8 @@ class FeedbackResource extends Resource
                 modifyQueryUsing: fn ($query) => $query->where('status', 'closed')
             )
             ->label('Munkalap')
-            ->required(),
+            ->required()
+            ->unique(ignoreRecord: true),
 
         Select::make('user_id')
             ->relationship('user', 'name')
@@ -75,5 +78,30 @@ class FeedbackResource extends Resource
             'create' => Pages\CreateFeedback::route('/create'),
             'edit' => Pages\EditFeedback::route('/{record}/edit'),
         ];
+    }
+
+    public static function canViewAny(): bool
+    {
+        return Auth::user()?->hasAnyRole(['admin', 'gépkezelő', 'karbantartó']);
+    }
+
+    public static function canCreate(): bool
+    {
+        return Auth::user()?->hasRole('gépkezelő');
+    }
+
+    public static function canEdit($record): bool
+    {
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return false;
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return true;
     }
 }

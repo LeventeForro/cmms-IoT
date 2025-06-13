@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
         Device::class => DevicePolicy::class,
         DeviceType::class => DeviceTypePolicy::class,
         Document::class => DocumentPolicy::class,
+        \App\Models\Feedback::class => \App\Policies\FeedbackPolicy::class,
 
       ];
 
